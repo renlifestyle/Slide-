@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Step 03: TPO &amp; Advice</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Shippori+Mincho:wght@400;600;800&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f3f4f6;
+        }
+        .slide-container {
+            width: 1920px;
+            height: 1080px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* フォント設定 */
+        .font-mincho { font-family: 'Shippori Mincho', serif; }
+        .font-gothic { font-family: 'Noto Sans JP', sans-serif; }
+        .font-maru { font-family: 'Zen Maru Gothic', sans-serif; }
+
+        /* 背景装飾 */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+        }
+        .blob-green {
+            top: -150px;
+            right: 200px;
+            width: 700px;
+            height: 700px;
+            background-color: rgba(220, 252, 231, 0.4);
+        }
+        .blob-pink {
+            bottom: -100px;
+            left: -100px;
+            width: 800px;
+            height: 800px;
+            background-color: rgba(255, 228, 230, 0.5);
+        }
+
+        /* カードスタイル */
+        .tpo-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .card-body {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* 各環境のカラーテーマ */
+        .theme-hs { /* High School */
+            --main-color: #F472B6; /* Pink-400 */
+            --bg-color: #FDF2F8; /* Pink-50 */
+            --accent-color: #FBCFE8; /* Pink-200 */
+        }
+        .theme-uni { /* University */
+            --main-color: #818CF8; /* Indigo-400 */
+            --bg-color: #EEF2FF; /* Indigo-50 */
+            --accent-color: #C7D2FE; /* Indigo-200 */
+        }
+        .theme-soc { /* Society */
+            --main-color: #FBBF24; /* Amber-400 */
+            --bg-color: #FFFBEB; /* Amber-50 */
+            --accent-color: #FDE68A; /* Amber-200 */
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .check-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: #4B5563;
+            line-height: 1.6;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        .check-icon {
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        /* アイコン画像 */
+        .header-icon-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        /* CTAエリア */
+        .cta-container {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            background: linear-gradient(135deg, #7BC6E8 0%, #4facfe 100%);
+            border-radius: 20px;
+            padding: 1.5rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+            z-index: 50;
+        }
+
+        .cta-icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4facfe;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- 背景装飾 -->
+<div class="blob blob-green"></div>
+<div class="blob blob-pink"></div>
+<!-- ヘッダーエリア -->
+<div class="pt-12 px-24 mb-4 z-20">
+<div class="flex items-center gap-4 mb-2">
+<span class="bg-gray-700 text-white px-5 py-1.5 rounded-full text-xl font-gothic tracking-wider">Step 03</span>
+<div class="h-px bg-gray-300 flex-1"></div>
+</div>
+<h1 class="text-6xl font-mincho text-gray-800 leading-tight">
+                失敗しないための、
+                <span class="relative inline-block">
+                    環境別TPOと注意点
+                    <svg class="absolute -bottom-2 left-0 w-full h-3 text-pink-200 opacity-70" preserveaspectratio="none" viewbox="0 0 100 10">
+<path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path>
+</svg>
+</span>
+</h1>
+</div>
+<!-- 3カラムコンテンツエリア -->
+<div class="flex flex-1 px-16 pb-40 gap-8 z-10 justify-center items-stretch mt-4">
+<!-- 新高校生 -->
+<div class="w-1/3 theme-hs">
+<div class="tpo-card">
+<div class="card-header" style="background-color: var(--bg-color);">
+<div class="absolute top-0 right-0 w-24 h-24 bg-white opacity-50 rounded-bl-full"></div>
+<img alt="新生活アイコン" class="header-icon-img mx-auto" src="https://www.genspark.ai/api/files/s/5BJblWTc?cache_control=3600"/>
+<div class="category-badge" style="background-color: var(--main-color);">
+<i class="fas fa-school mr-2"></i>新高校生
+                        </div>
+<p class="text-gray-600 font-maru font-bold text-lg m-0">バレないスクールメイク</p>
+</div>
+<div class="card-body">
+<div class="mb-4">
+<h3 class="font-mincho text-xl font-bold text-gray-700 mb-2 border-b-2 border-pink-200 inline-block">Check Point</h3>
+<p class="text-gray-600 font-gothic text-sm">まずは校則をしっかり確認。<br/>「すっぴん風」だけど可愛く。</p>
+</div>
+<div class="space-y-4">
+<div class="check-list-item">
+<i class="fas fa-check-circle check-icon" style="color: var(--main-color);"></i>
+<p class="m-0"><strong>クリアマスカラ</strong>で<br/>束感だけプラス</p>
+</div>
+<div class="check-list-item">
+<i class="fas fa-check-circle check-icon" style="color: var(--main-color);"></i>
+<p class="m-0"><strong>色付きリップ</strong>で<br/>血色感を仕込む</p>
+</div>
+<div class="check-list-item">
+<i class="fas fa-check-circle check-icon" style="color: var(--main-color);"></i>
+<p class="m-0">眉は描くより<strong>「整える」</strong><br/>パウダーでふんわりと</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 新大学生 -->
+<div class="w-1/3 theme-uni">
+<div class="tpo-card">
+<div class="card-header" style="background-color: var(--bg-color);">
+<div class="absolute top-0 right-0 w-24 h-24 bg-white opacity-50 rounded-bl-full"></div>
+<img alt="新生活アイコン" class="header-icon-img mx-auto" src="https://www.genspark.ai/api/files/s/5BJblWTc?cache_control=3600"/>
+<div class="category-badge" style="background-color: var(--main-color);">
+<i class="fas fa-university mr-2"></i>新大学生
+                        </div>
+<p class="text-gray-600 font-maru font-bold text-lg m-0">自由だからこそ「似合う」</p>
+</div>
+<div class="card-body">
+<div class="mb-4">
+<h3 class="font-mincho text-xl font-bold text-gray-700 mb-2 border-b-2 border-indigo-200 inline-block">Check Point</h3>
+<p class="text-gray-600 font-gothic text-sm">メイクデビューのチャンス。<br/>自分だけの正解を見つけよう。</p>
+</div>
+<div class="space-y-4">
+<div class="check-list-item">
+<i class="fas fa-check-circle check-icon" style="color: var(--main-color);"></i>
+<p class="m-0"><strong>PC(パーソナルカラー)診断</strong>で<br/>似合う色を知る</p>
+</div>
+<div class="check-list-item">
+<i class="fas fa-check-circle check-icon" style="color: var(--main-color);"></i>
+<p class="m-0"><strong>骨格診断</strong>で<br/>似合う眉・髪型を研究</p>
+</div>
+<div class="check-list-item">
+<i class="fas fa-check-circle check-icon" style="color: var(--main-color);"></i>
+<p class="m-0">トレンドを取り入れて<br/><strong>一気に垢抜け！</strong></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 新社会人 -->
+<div class="w-1/3 theme-soc">
+<div class="tpo-card">
+<div class="card-header" style="background-color: var(--bg-color);">
+<div class="absolute top-0 right-0 w-24 h-24 bg-white opacity-50 rounded-bl-full"></div>
+<img alt="新生活アイコン" class="header-icon-img mx-auto" src="https://www.genspark.ai/api/files/s/5BJblWTc?cache_control=3600"/>
+<div class="category-badge" style="background-color: var(--main-color);">
+<i class="fas fa-building mr-2"></i>新社会人
+                        </div>
+<p class="text-gray-600 font-maru font-bold text-lg m-0">清潔感と信頼感を重視</p>
+</div>
+<div class="card-body">
+<div class="mb-4">
+<h3 class="font-mincho text-xl font-bold text-gray-700 mb-2 border-b-2 border-yellow-200 inline-block">Check Point</h3>
+<p class="text-gray-600 font-gothic text-sm">オフィスメイクはマナー。<br/>派手すぎず、健康的が鍵。</p>
+</div>
+<div class="space-y-4">
+<div class="check-list-item">
+<i class="fas fa-check-circle check-icon" style="color: var(--main-color);"></i>
+<p class="m-0">大粒ラメ・派手色は避ける<br/><strong>マット〜微細パール</strong>推奨</p>
+</div>
+<div class="check-list-item">
+<i class="fas fa-check-circle check-icon" style="color: var(--main-color);"></i>
+<p class="m-0"><strong>ベージュ・コーラル系</strong>で<br/>誰からも好かれる顔に</p>
+</div>
+<div class="check-list-item">
+<i class="fas fa-check-circle check-icon" style="color: var(--main-color);"></i>
+<p class="m-0">崩れにくいベースメイクで<br/><strong>清潔感をキープ</strong></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CTAエリア -->
+<div class="cta-container">
+<div class="flex items-center gap-6">
+<div class="cta-icon-circle">
+<i class="far fa-bookmark"></i>
+</div>
+<div>
+<h2 class="text-3xl font-mincho font-bold m-0 mb-1">Save this post!</h2>
+<p class="text-lg font-gothic opacity-90 m-0">この投稿を『保存』して、春からのメイクに役立ててね！</p>
+</div>
+</div>
+<div class="text-right">
+<i class="fas fa-arrow-right text-4xl opacity-50"></i>
+</div>
+</div>
+<!-- フッター装飾 -->
+<div class="absolute bottom-0 w-full h-4 bg-yellow-100 flex z-50">
+<div class="w-1/2 h-full bg-pink-200"></div>
+<div class="w-1/2 h-full bg-blue-200"></div>
+</div>
+</div>
+</body>
+</html>
